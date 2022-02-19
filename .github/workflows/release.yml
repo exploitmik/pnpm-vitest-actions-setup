@@ -20,15 +20,18 @@ jobs:
           cache: 'pnpm'
       - name: installing dependencies
         run: pnpm install
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
-        id: semantic
-        with:
-          branch: main
-          extra_plugins: |
-            @semantic-release/git
-            @semantic-release/commit-analyzer
-            @semantic-release/release-notes-generator
-            @semantic-release/github"
+      - run: npx conventional-github-releaser -p angular
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
+#       - name: Semantic Release
+#         uses: cycjimmy/semantic-release-action@v2
+#         id: semantic
+#         with:
+#           branch: main
+#           extra_plugins: |
+#             @semantic-release/git
+#             @semantic-release/commit-analyzer
+#             @semantic-release/release-notes-generator
+#             @semantic-release/github"
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
