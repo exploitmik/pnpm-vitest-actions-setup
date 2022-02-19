@@ -14,7 +14,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './jest/setupTests.ts',
     coverage: {
-      reporter: ['html'],
+      reporter: ['html', 'lcov'],
     },
   },
 });
