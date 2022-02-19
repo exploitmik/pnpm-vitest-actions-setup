@@ -23,10 +23,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - name: Run Vitest
-        id: vitest-ci
         run: pnpm run test:coverage
       - name: SonarCloud Scan
-        needs: vitest-ci
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
