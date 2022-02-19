@@ -1,4 +1,4 @@
-name: Test
+name: Lint
 
 on:
   push:
@@ -7,8 +7,11 @@ on:
     branches: [main]
     types: [opened, synchronize, reopened]
 
+env:
+  MY_FUNCTION_ENV: 'Mikéias Oliveira'
+
 jobs:
-  unit:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,10 +25,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Run Vitest
-        run: pnpm run test:coverage
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run Lint
+        run: pnpm run lint
+      - name: Say my name
+        run: echo "My name is ${{ env.MY_FUNCTION_ENV }}"
