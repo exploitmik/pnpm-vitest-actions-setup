@@ -1,4 +1,4 @@
-name: Check Project Patterns
+name: Test
 
 on:
   push:
